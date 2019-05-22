@@ -2,7 +2,6 @@ package org.waqe.pl.customguis.listeners
 
 import org.bukkit.Bukkit
 import org.bukkit.Material
-import org.bukkit.entity.HumanEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.EventException
 import org.bukkit.event.EventHandler
@@ -27,20 +26,20 @@ class PlayerListener(val plugin: CustomGUIs) : Listener {
 
     @EventHandler
     fun onInventoryClick(e: InventoryClickEvent) {
-        var inv: InventoryView = e.view
+        val inv: InventoryView = e.view
 //            Bukkit.getLogger().info("Clicked Inventory Title: ${e.clickedInventory.getTitle()}")
         if (inv.getTitle() != null) Bukkit.getLogger().info("Clicked Inventory Title: ${inv.getTitle().toString()}")
         if (inv.getTitle().equals("Custom items")) {
             e.setCancelled(true)
-            if (inv.getItem(1).itemMeta.getDisplayName().equals("Awesome Pick")) {
+            if (e.slot == 0 && inv.title == "Custom items") {
+                Bukkit.getLogger().info("  Awesome sword")
+                // perm check here
+                inv.player.getInventory().addItem(plugin.getCustomItem().getAwesomeSword())
+            }
+            if (e.slot == 1 && inv.title == "Custom items") {
                 Bukkit.getLogger().info("  Awesome pick!!")
                 // perm check here
                 inv.player.getInventory().addItem(plugin.getCustomItem().getAwesomePick())
-            }
-            if (inv.getItem(0).itemMeta.getDisplayName().equals("Awesome Sword")) {
-                Bukkit.getLogger().info("  Awesome sword!!")
-                // perm check here
-                inv.player.getInventory().addItem(plugin.getCustomItem().getAwesomeSword())
             }
         }
         if (inv.cursor == null) return
