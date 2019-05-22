@@ -31,20 +31,17 @@ class PlayerListener(val plugin: CustomGUIs) : Listener {
 //            Bukkit.getLogger().info("Clicked Inventory Title: ${e.clickedInventory.getTitle()}")
         if (inv.getTitle() != null) Bukkit.getLogger().info("Clicked Inventory Title: ${inv.getTitle().toString()}")
         if (inv.getTitle().equals("Custom items")) {
-            Bukkit.getLogger().info("1-> ${inv.cursor.getItemMeta().getDisplayName()}")
-            Bukkit.getLogger().info("2-> ${inv.topInventory.getItem(0)}")
-            Bukkit.getLogger().info("3-> ${e.getCursor()}")
-
-            if (inv.getTopInventory().getItem(0) == (e.getCursor())) {
-                Bukkit.getLogger().info("  Awesome selection!!")
-                // perm check here
-                inv.player.getInventory().addItem(plugin.getCustomItem().getAwesomeSword())
-            } else if (inv.getTopInventory().getItem(0) == (e.getCursor())) {
-                Bukkit.getLogger().info("  Awesome selection!!")
+            e.setCancelled(true)
+            if (inv.getItem(1).itemMeta.getDisplayName().equals("Awesome Pick")) {
+                Bukkit.getLogger().info("  Awesome pick!!")
                 // perm check here
                 inv.player.getInventory().addItem(plugin.getCustomItem().getAwesomePick())
             }
-            e.setCancelled(true)
+            if (inv.getItem(0).itemMeta.getDisplayName().equals("Awesome Sword")) {
+                Bukkit.getLogger().info("  Awesome sword!!")
+                // perm check here
+                inv.player.getInventory().addItem(plugin.getCustomItem().getAwesomeSword())
+            }
         }
         if (inv.cursor == null) return
         if (inv.cursor.getItemMeta() == null) return

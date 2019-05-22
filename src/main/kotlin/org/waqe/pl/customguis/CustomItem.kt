@@ -30,11 +30,11 @@ final class CustomItem {
         if (pickMeta != null) pickMeta.displayName = "Awesome Pick"
         lore = ArrayList<String>()
         lore.add(" ")
-        lore.add("This axe does NOT break!")
+        lore.add("This pick does NOT break!")
         pickMeta?.lore = lore
         pickMeta?.isUnbreakable = true
         pickMeta?.addItemFlags(ItemFlag.HIDE_UNBREAKABLE)
-        pickMeta?.addEnchant(Enchantment.DIG_SPEED, 4, true)
+        pickMeta?.addEnchant(Enchantment.DIG_SPEED, 1, true)
         this.awesomePick.itemMeta = pickMeta
 
         customItemInv.addItem(this.getAwesomeSword(), this.getAwesomePick())
