@@ -1,0 +1,7 @@
+name: CustomGUIProject
+version: ${project.version}
+main: org.waqe.pl.customguis.CustomGUIs
+api-version: "1.13"
+commands:
+  customitems:
+    aliases: [ci]
